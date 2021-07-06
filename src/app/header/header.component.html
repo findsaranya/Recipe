@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <!-- <a class="navbar-brand" href="#">Recipe</a> -->
+    <!-- <div class="navbar-header">
+        <button type="button" class="navbar-toggle" (click)="collapsed = !collapsed">
+          <span class="icon-bar" *ngFor="let iconBar of [1, 2, 3]"></span> -->
+          <!-- <span class="navbar-toggler-icon"></span> 
+        </button> -->
+        <a routerLink="/" class="navbar-brand"> 
+            <img src="https://img.pngio.com/recipe-book-icon-of-colored-outline-style-available-in-svg-png-recipe-book-png-256_256.png"
+             alt="logo"
+             class="img-fluid" width="50" height="50"
+             >
+            Recipe Book</a>
+      <!-- </div>
+      -->
+
+    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
+    <!-- <div class="collapse navbar-collapse" id="collapsibleNavId"> -->
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="#" (click) = "onSelect('recipe')">Recipes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" (click) = "onSelect('shopping')">Shopping List</a>
+            </li>
+        </ul>
+           
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" 
+                        href="#" id="dropdownId" data-toggle="dropdown" 
+                        aria-haspopup="true" aria-expanded="false">Manage</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                            <a class="dropdown-item" href="#">Save Data</a>
+                            <a class="dropdown-item" href="#">Fetch Data</a>
+                        </div>
+                    </li>
+                </ul>
+            
+       
+       
+    </div>
+</nav>
