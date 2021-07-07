@@ -17,11 +17,12 @@ export class ShoppingEditComponent implements OnInit {
   }
   onSubmit(){
     //console.log(el1.value,el2.value);
-    console.log(typeof this.amount.nativeElement.vaue);
-    this.addIngredient.emit({
-      name:this.ingredientName.nativeElement.value,
-      amount : Number(this.amount.nativeElement.vaue)
-    })
+    console.log(typeof this.amount.nativeElement.value);
+    const newIngredient = new Ingredient(
+      this.ingredientName.nativeElement.value,
+      this.amount.nativeElement.value
+      )
+    this.addIngredient.emit(newIngredient);
 
   }
 
