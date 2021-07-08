@@ -34,7 +34,8 @@ export class RecipeService {
     //console.log(ingredients);
     this.shopping.pushIngredients(ingredients);
 }
-// getARecipe(id:number){
-//   let recipeIndex = this.
-// }
+getARecipe(id:number){
+  return this.recipes.slice()[id];//give a copy
+
+}
 }
