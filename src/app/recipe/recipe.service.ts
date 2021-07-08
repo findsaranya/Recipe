@@ -34,4 +34,7 @@ export class RecipeService {
     //console.log(ingredients);
     this.shopping.pushIngredients(ingredients);
 }
+// getARecipe(id:number){
+//   let recipeIndex = this.
+// }
 }
