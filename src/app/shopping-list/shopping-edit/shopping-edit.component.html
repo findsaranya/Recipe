@@ -1,6 +1,10 @@
 <div class="row">
+    <!-- #Ingredient = 'ngModelGroup'
+    ngModelGroup="Ingrdient" -->
     <div class="col-xs-12">
-        <form (ngSubmit)="onSubmit()"> 
+        <form (ngSubmit)="onSubmit()" #form="ngForm"> 
+            <div
+            >
             <div class="row">
                 <div class="col-sm-5">
                     <div class="form-group">
@@ -8,7 +12,9 @@
                         <input type="text" name="name"
                          id="name"
                         class="form-control"
-                        #ingText
+                       ngModel
+                       required
+                       #name="ngModel"
                         >
                     </div>
                 </div>
@@ -18,14 +24,17 @@
                         <input type="number" name="amount"
                          id="amount"
                         class="form-control"
-                        #amountInput
+                       ngModel
+                       #amount="ngModel"
+                       required
                         >
                     </div>  
                 </div>
             </div>
+        </div>
             <div class="row mt-2">
                 <div class="col-sm-12">
-                    <button class="btn btn-success" type="submit">Add</button> | 
+                    <button class="btn btn-success" type="submit" [disabled]="!form.valid">Add</button> | 
                     <button class="btn btn-danger" type="button">Delete</button> |
                     <button class="btn btn-primary" type="button">Clear</button>
                 </div>
