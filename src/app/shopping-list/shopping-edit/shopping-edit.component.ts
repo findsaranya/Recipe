@@ -61,5 +61,10 @@ ingredienttoEdit : Ingredient;
     this.shopping.reset();
     this.editMode = false;
   }
+  onDelete(){
+    this.onClear();
+    this.shoppingService.deleteIngredient(this.editIndex);
+
+  }
 
 }

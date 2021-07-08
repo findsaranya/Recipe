@@ -32,4 +32,8 @@ export class ShoppingService {
     this.ingredients[index] = newImg;
     this.addIngredients.next(this.ingredients.slice());
   }
+  deleteIngredient(index:number){
+    this.ingredients.splice(index,1);
+    this.addIngredients.next(this.ingredients.slice());
+  }
 }
