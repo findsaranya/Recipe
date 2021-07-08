@@ -11,6 +11,7 @@ export class ShoppingService {
     new Ingredient('Celery',29)
   ];
   addIngredients = new Subject<Ingredient[]>();
+  editinglist = new Subject<number>();
   //addSelectedRecipe = new EventEmitter<Recipe>();
   constructor() { }
   getIngredients(){
