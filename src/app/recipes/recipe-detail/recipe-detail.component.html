@@ -21,7 +21,7 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item" (click)="onAddtoShopping()">To Shopping List</a>
-              <a class="dropdown-item">Edit</a>
+              <a class="dropdown-item" [routerLink]="['/recipes',id,'edit']">Edit</a>
               <a class="dropdown-item">Delete</a>
             </div>
           </div>
