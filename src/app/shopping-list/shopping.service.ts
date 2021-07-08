@@ -25,4 +25,11 @@ export class ShoppingService {
     this.ingredients.push(...ingredients);
     this.addIngredients.next(this.ingredients.slice());
   }
+  getAIngredient(id:number){
+    return {...this.ingredients[id]};
+  }
+  upgradeIngrdient(index:number , newImg:Ingredient){
+    this.ingredients[index] = newImg;
+    this.addIngredients.next(this.ingredients.slice());
+  }
 }

@@ -18,6 +18,7 @@ export class ShoppingEditComponent implements OnInit,OnDestroy {
   editIdSubscription : Subscription;
   editIndex : number;
   editMode : boolean = false;
+ingredienttoEdit : Ingredient;
   ngOnInit(): void {
     //console.log(this.editMode);
     this.editIdSubscription = this.shoppingService.editinglist
@@ -25,6 +26,11 @@ export class ShoppingEditComponent implements OnInit,OnDestroy {
         this.editMode = true;
         //console.log(this.editMode);
         this.editIndex = id;
+        this.ingredienttoEdit = this.shoppingService.getAIngredient(this.editIndex);
+        this.shopping.setValue({
+           name:this.ingredienttoEdit.name,
+           amount:this.ingredienttoEdit.amount
+        });
     } )
   }
   ngOnDestroy(){
@@ -39,10 +45,21 @@ export class ShoppingEditComponent implements OnInit,OnDestroy {
      const newIngredient = new Ingredient(
        name,amount
        )
+       if(this.editMode){
+         this.shoppingService.upgradeIngrdient(this.editIndex,newIngredient);
+       }else{
         this.shoppingService.addNewIngredients(newIngredient);
-        this.shopping.reset();
+        
+       }
+       this.editMode = false;
+       this.shopping.reset();
+        
     //this.addIngredient.emit(newIngredient);
 
+  }
+  onClear(){
+    this.shopping.reset();
+    this.editMode = false;
   }
 
 }

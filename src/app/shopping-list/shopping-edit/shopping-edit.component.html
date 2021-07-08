@@ -17,8 +17,8 @@
                        minlength="3"
                        #name="ngModel"
                         >
-                <!-- <span class="text-danger" [hidden]="name.touched && !name.errors.required && !name.valid">*Required</span>  
-                <span class="text-danger" [hidden]="name.touched && !name.errors.minlength && !name.valid">Must be 3 characters Long</span>       -->
+                <!-- <span class="text-danger" *ngIf="name.touched && !name.errors.required">*Required</span>  
+                <span class="text-danger" *ngIf="name.touched && !name.errors.minlength">Must be 3 characters Long</span>       -->
                     </div>
                 </div>
                 <div class="col-sm-2">
@@ -32,8 +32,6 @@
                        required
                        pattern="[1-9]+[0-9]*$"
                         >
-                <!-- <span class="text-danger" *ngIf="amount.touched && amount.errors.required">*Required</span>  
-                <span class="text-danger" *ngIf="amount.touched && amount.errors.pattern">Invalid Number</span>  -->
                     </div>  
                 </div>
             </div>
@@ -43,9 +41,13 @@
                     <button class="btn btn-success"
                      type="submit"
                       [disabled]="!form.valid"
-                      >Add</button> | 
+                      >
+                    {{ editMode ? 'Update' : 'Add'}}
+                    </button> | 
                     <button class="btn btn-danger" type="button">Delete</button> |
-                    <button class="btn btn-primary" type="button">Clear</button>
+                    <button class="btn btn-primary" type="button"
+                    (click) = "onClear()"
+                    >Clear</button>
                 </div>
             </div>
         </form>
