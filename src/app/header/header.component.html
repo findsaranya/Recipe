@@ -22,17 +22,18 @@
     <!-- <div class="collapse navbar-collapse" id="collapsibleNavId"> -->
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <a class="nav-link" routerLink="/">Recipes</a>
+                <a class="nav-link" routerLink="/recipes">Recipes</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" (click) = "onSelect('shopping')">Shopping List</a>
+                <a class="nav-link" routerLink='/shopping-list'>Shopping List</a>
             </li>
         </ul>
            
                 <ul class="nav navbar-nav navbar-right">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" 
-                        href="#" id="dropdownId" data-toggle="dropdown" 
+                        id="dropdownId" data-toggle="dropdown" 
+                        style="cursor:pointer"
                         aria-haspopup="true" aria-expanded="false" appDropdown>Manage</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownId">
                             <a class="dropdown-item" href="#">Save Data</a>
