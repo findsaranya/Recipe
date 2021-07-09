@@ -1,3 +1,4 @@
+import { FormArray } from "@angular/forms";
 import { Ingredient } from "../shared/ingredients.model";
 
 export class Recipe {
@@ -11,4 +12,11 @@ export class Recipe {
        this.imagePath = imagePath;
        this.ingredients = ingredients;
     }
+}
+
+export interface RecipeType {
+    name:string;
+    description:string;
+    imagePath:string;
+    ingredients: FormArray | Array<{name:string,amount:number}>
 }
