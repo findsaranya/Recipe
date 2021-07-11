@@ -103,5 +103,18 @@ export class RecipeEditComponent implements OnInit {
   get controls() { // a getter!
     return (<FormArray>this.recipeForm.get('ingredients')).controls;
   }
+  onAddIngredients(){
+    (<FormArray>this.recipeForm.get('ingredients')).controls.push(
+      new FormGroup({
+        'name':new FormControl(null,[Validators.required]),
+        'amount' : new FormControl(null,[Validators.required,
+          Validators.pattern(/^[1-9]+[0-9]*$/)])
+      })
+    )
+  }
+onDeleteIngredients(index:number){
+  (<FormArray>this.recipeForm.get('ingredients')).removeAt(index);
+}
+
 
 }
