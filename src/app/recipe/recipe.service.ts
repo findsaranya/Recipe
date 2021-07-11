@@ -39,4 +39,10 @@ getARecipe(id:number){
   return this.recipes.slice()[id];//give a copy
 
 }
+addRecipe(recipe:Recipe){
+  this.recipes.push(recipe);
+}
+updateRecipe(id:number,newRecipe:Recipe){
+  this.recipes[id] = newRecipe;
+}
 }

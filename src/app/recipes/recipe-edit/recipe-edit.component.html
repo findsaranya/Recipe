@@ -62,20 +62,25 @@
                             >
                         </div>
                         <div class="col-md-2">
-                            <button class="btn btn-danger" type="button">X</button>
+                            <button class="btn btn-danger" type="button" (click)="onDeleteIngredient(i)">X</button>
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-12">
-                            <button class="btn btn-success" (click)="onAddIngredients()">Add Ingredients</button>
+                            <button class="btn btn-success"
+                            type="button" 
+                            (click)="onAddIngredients()">Add Ingredients</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col-xs-12">
-                    <button class="btn btn-success" type="submit">Save</button>&nbsp;&nbsp;
-                    <button class="btn btn-danger" type="button">Clear</button>
+                    <button class="btn btn-success"
+                    [disabled]="!recipeForm.valid"
+                     type="submit">Save</button>&nbsp;&nbsp;
+                    <button class="btn btn-danger" 
+                    type="button">Clear</button>
                 </div>
             </div>
         </form>
