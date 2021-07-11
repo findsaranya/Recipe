@@ -48,7 +48,7 @@ updateRecipe(id:number,newRecipe:Recipe){
   this.recipeChanged.next(this.recipes.slice());
 }
 deleteRecipe(id:number){
-  this.recipes.slice(id,1);
+  this.recipes.splice(id,1);
   this.recipeChanged.next(this.recipes.slice());
 }
 }
