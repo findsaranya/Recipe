@@ -7,7 +7,7 @@ import { ShoppingService } from '../shopping-list/shopping.service';
   providedIn: 'root'
 })
 export class RecipeService {
-
+  recipeChanged = new Subject<Recipe[]>();
   selectedRecipe = new Subject<Recipe>();
   private recipes : Recipe [] = [
     new Recipe('sample Recipe',
@@ -41,8 +41,14 @@ getARecipe(id:number){
 }
 addRecipe(recipe:Recipe){
   this.recipes.push(recipe);
+  this.recipeChanged.next(this.recipes.slice());
 }
 updateRecipe(id:number,newRecipe:Recipe){
   this.recipes[id] = newRecipe;
+  this.recipeChanged.next(this.recipes.slice());
+}
+deleteRecipe(id:number){
+  this.recipes.slice(id,1);
+  this.recipeChanged.next(this.recipes.slice());
 }
 }
