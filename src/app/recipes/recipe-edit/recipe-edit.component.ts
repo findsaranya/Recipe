@@ -15,7 +15,7 @@ export class RecipeEditComponent implements OnInit {
     name:'',
     description:'',
     imagePath:'',
-    ingredients:new FormArray([])
+    ingredients:new FormArray([]) 
   }
   recipeForm:FormGroup
   constructor(
@@ -30,6 +30,7 @@ export class RecipeEditComponent implements OnInit {
         this.id = params['id'];
         this.editMode = params['id'] != null;
         this.initForm();
+        console.log("controls",this.controls);
         console.log(this.editMode);
 
     });
@@ -37,31 +38,70 @@ export class RecipeEditComponent implements OnInit {
   onSubmit(){
     console.log(this.recipeForm);
   }
-  private initForm(){
+  // private initForm(){
     
-    if(this.editMode){
-    let details = this.recipeService.getARecipe(this.id);
-    let formControls = [];
-      if(details['ingredients']){
+  //   if(this.editMode){
+  //   let details = this.recipeService.getARecipe(this.id);
+  //   var formControls = [];
+  //     if(details['ingredients']){
        
-        for (let ing of details.ingredients){
-          formControls.push(
-            new FormGroup({
-              'name':new FormControl(ing.name),
-              'amount':new FormControl(ing.amount)
-            })
-          )
+  //       for (let ing of details.ingredients){
+  //         formControls.push(
+  //           new FormGroup({
+  //             'name':new FormControl(ing.name),
+  //             'amount':new FormControl(ing.amount)
+  //           })
+  //         )
 
+  //       }
+  //       this.recipeDetails = details;
+  //       this.recipeDetails.ingredients = formControls;
+  //     }
+  //   }
+  //       this.recipeForm = new FormGroup({
+  //         'name': new FormControl (this.recipeDetails.name,[Validators.required]),
+  //         'description': new FormControl (this.recipeDetails.description,[Validators.required]),
+  //         'imagePath' : new FormControl(this.recipeDetails.imagePath,[Validators.required]),
+  //         'ingredients' : 
+  //       })
+  // }
+
+
+  private initForm() {
+    let recipeName = '';
+    let recipeImagePath = '';
+    let recipeDescription = '';
+    let recipeIngredients = new FormArray([]);
+
+    if (this.editMode) {
+      const recipe = this.recipeService.getARecipe(this.id);
+      recipeName = recipe.name;
+      recipeImagePath = recipe.imagePath;
+      recipeDescription = recipe.description;
+      if (recipe['ingredients']) {
+        for (let ingredient of recipe.ingredients) {
+          recipeIngredients.push(
+            new FormGroup({
+              'name': new FormControl(ingredient.name, Validators.required),
+              'amount': new FormControl(ingredient.amount, [
+                Validators.required,
+                Validators.pattern(/^[1-9]+[0-9]*$/)
+              ])
+            })
+          );
         }
-        this.recipeDetails = details;
       }
     }
-        this.recipeForm = new FormGroup({
-          'name': new FormControl (this.recipeDetails.name,[Validators.required]),
-          'description': new FormControl (this.recipeDetails.description,[Validators.required]),
-          'imagePath' : new FormControl(this.recipeDetails.imagePath,[Validators.required]),
-          'ingrdeients':this.recipeDetails.ingredients
-        })
+
+    this.recipeForm = new FormGroup({
+      'name': new FormControl(recipeName, Validators.required),
+      'imagePath': new FormControl(recipeImagePath, Validators.required),
+      'description': new FormControl(recipeDescription, Validators.required),
+      'ingredients': recipeIngredients
+    });
+  }
+  get controls() { // a getter!
+    return (<FormArray>this.recipeForm.get('ingredients')).controls;
   }
 
 }
